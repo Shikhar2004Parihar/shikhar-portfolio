@@ -2,6 +2,8 @@ import { useState } from 'react';
 import aiAgentImage from '../assets/ai-agent.jpg';
 import './ChatBot.css';
 
+const API_URL = import.meta.env.VITE_API_URL || 'https://shikhar-portfolio-wine.vercel.app';
+
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
@@ -33,7 +35,7 @@ export default function ChatBot() {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/chat', {
+      const response = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
