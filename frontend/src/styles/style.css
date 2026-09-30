@@ -16,8 +16,8 @@ body.light-mode {
     --secondary-text: #040404;
     --card-bg: rgba(255, 255, 255, 0.75);
     --border-color: rgba(0, 0, 0, 0.15);
-    --redyellow-text: rgb(145, 2, 2);
-    --underline-color: rgb(145, 2, 2);
+    --redyellow-text: rgb(161, 31, 31);
+    --underline-color: rgb(159, 31, 31);
 }
 
 /* =====================================================
