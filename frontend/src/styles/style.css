@@ -367,6 +367,11 @@ a.value:hover {
     padding: 100px 50px;
 }
 
+.section,
+.contact-section {
+    padding-block: 100px;
+}
+
 /* =====================================================
    SECTION SCROLL ANIMATION
 ===================================================== */
@@ -386,7 +391,6 @@ a.value:hover {
 ===================================================== */
 
 .about {
-    min-height: 650px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -534,10 +538,6 @@ a.value:hover {
    SKILLS
 ===================================================== */
 
-.skills {
-    min-height: 700px;
-}
-
 .skills-container {
     width: 100%;
     max-width: 850px;
@@ -632,10 +632,6 @@ a.value:hover {
 /* =====================================================
    EDUCATION / PORTFOLIO
 ===================================================== */
-
-.placeholder-section {
-    min-height: 600px;
-}
 
 .placeholder-card,
 .portfolio-card {
@@ -969,7 +965,6 @@ a.value:hover {
 
 
 .contact-section {
-    min-height: 100vh;
     padding: 100px 8%;
     background: var(--main-bg);
     color: var(--text-color);
@@ -1326,6 +1321,11 @@ footer {
         padding: 80px 35px;
     }
 
+    .section,
+    .contact-section {
+        padding-block: 80px;
+    }
+
 
     /* About */
 
@@ -1493,6 +1493,11 @@ footer {
         padding: 70px 20px;
     }
 
+    .section,
+    .contact-section {
+        padding-block: 70px;
+    }
+
 
     /* About */
 
@@ -1533,10 +1538,6 @@ footer {
 
     /* Skills */
 
-    .skills {
-        min-height: auto;
-    }
-
     .skills-container {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -1553,10 +1554,6 @@ footer {
 
 
     /* Education / Portfolio */
-
-    .placeholder-section {
-        min-height: auto;
-    }
 
     .placeholder-card,
     .portfolio-card {
