@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://shikhar-portfolio-wine.vercel.app';
+const API_URL = "";
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);

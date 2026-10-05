@@ -2,7 +2,7 @@ import { useState } from 'react';
 import aiAgentImage from '../assets/ai-agent.jpg';
 import './ChatBot.css';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://shikhar-portfolio-wine.vercel.app';
+const API_URL = "";
 
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
