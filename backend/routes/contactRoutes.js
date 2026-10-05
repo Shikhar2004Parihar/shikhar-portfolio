@@ -1,5 +1,6 @@
 const express = require("express");
 const Contact = require("../models/Contact");
+const connectToDatabase = require("../database");
 
 const router = express.Router();
 
@@ -25,6 +26,16 @@ router.post("/", async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "Enter a valid email address",
+      });
+    }
+
+    try {
+      await connectToDatabase();
+    } catch (error) {
+      console.error("Contact database connection failed:", error.message);
+      return res.status(503).json({
+        success: false,
+        message: "Contact form is temporarily unavailable. Please try again later.",
       });
     }
 

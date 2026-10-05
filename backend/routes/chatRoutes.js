@@ -2,10 +2,7 @@ const express = require('express');
 const OpenAI = require('openai');
 
 const router = express.Router();
-
-const client = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
-});
+let client;
 
 router.post('/', async (req, res) => {
 
@@ -13,11 +10,21 @@ router.post('/', async (req, res) => {
 
         const { message } = req.body;
 
-        if (!message || !message.trim()) {
+        if (typeof message !== 'string' || !message.trim()) {
             return res.status(400).json({
                 message: 'Message is required'
             });
         }
+
+        if (!process.env.OPENAI_API_KEY) {
+            return res.status(503).json({
+                message: 'AI chat is not configured. Please try again later.'
+            });
+        }
+
+        client ||= new OpenAI({
+            apiKey: process.env.OPENAI_API_KEY
+        });
 
         const response = await client.responses.create({
             model: 'gpt-5-mini',

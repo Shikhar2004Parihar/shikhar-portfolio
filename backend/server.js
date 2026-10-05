@@ -1,8 +1,8 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("node:path");
+const connectToDatabase = require("./database");
 
 dotenv.config({ path: path.join(__dirname, ".env") });
 
@@ -29,19 +29,18 @@ app.get("/", (req, res) => {
 });
 
 async function startServer() {
-  if (!process.env.MONGO_URI) {
-    throw new Error("MONGO_URI is missing. Add it to backend/.env.");
-  }
-
-  await mongoose.connect(process.env.MONGO_URI);
-  console.log("MongoDB Connected");
+  await connectToDatabase();
 
   app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
   });
 }
 
-startServer().catch((error) => {
-  console.error("Backend startup failed:", error.message);
-  process.exitCode = 1;
-});
+if (require.main === module) {
+  startServer().catch((error) => {
+    console.error("Backend startup failed:", error.message);
+    process.exitCode = 1;
+  });
+}
+
+module.exports = app;

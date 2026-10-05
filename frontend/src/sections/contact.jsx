@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { readApiResponse } from '../utils/api';
 
 const API_URL = "";
 
@@ -22,11 +23,7 @@ export default function Contact() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || 'Unable to submit your message.');
-      }
+      await readApiResponse(response);
 
       form.reset();
       setSubmissionMessage('Your message was sent successfully.');

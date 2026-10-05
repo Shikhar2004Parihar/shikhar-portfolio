@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import aiAgentImage from '../assets/ai-agent.jpg';
+import { readApiResponse } from '../utils/api';
 import './ChatBot.css';
 
 const API_URL = "";
@@ -45,11 +46,7 @@ export default function ChatBot() {
         })
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Something went wrong');
-      }
+      const data = await readApiResponse(response);
 
       setMessages((previous) => [
         ...previous,
