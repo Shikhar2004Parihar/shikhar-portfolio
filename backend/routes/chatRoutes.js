@@ -1,35 +1,31 @@
-const express = require('express');
-const OpenAI = require('openai');
+const express = require("express");
+const { GoogleGenAI } = require("@google/genai");
 
 const router = express.Router();
+
 let client;
 
-router.post('/', async (req, res) => {
-
+router.post("/", async (req, res) => {
     try {
-
         const { message } = req.body;
 
-        if (typeof message !== 'string' || !message.trim()) {
+        if (typeof message !== "string" || !message.trim()) {
             return res.status(400).json({
-                message: 'Message is required'
+                message: "Message is required"
             });
         }
 
-        if (!process.env.OPENAI_API_KEY) {
+        if (!process.env.GEMINI_API_KEY) {
             return res.status(503).json({
-                message: 'AI chat is not configured. Please try again later.'
+                message: "AI chat is not configured. Please try again later."
             });
         }
 
-        client ||= new OpenAI({
-            apiKey: process.env.OPENAI_API_KEY
+        client ||= new GoogleGenAI({
+            apiKey: process.env.GEMINI_API_KEY
         });
 
-        const response = await client.responses.create({
-            model: 'gpt-5-mini',
-
-            instructions: `
+        const prompt = `
 You are the AI assistant for Shikhar Parihar's personal portfolio.
 
 Your job is to answer questions about Shikhar's portfolio.
@@ -74,26 +70,53 @@ Rules:
    is not available in the portfolio.
 5. Do not claim to be Shikhar.
 6. You are Shikhar's portfolio AI assistant.
-            `,
 
-            input: message
-        });
+Visitor's question:
+${message.trim()}
+`;
+
+        let response;
+        let lastError;
+
+        // Try up to 3 times if Gemini is temporarily unavailable
+        for (let attempt = 1; attempt <= 3; attempt++) {
+            try {
+                response = await client.models.generateContent({
+                    model: "gemini-3.8-flash",
+                    contents: prompt
+                });
+
+                break;
+            } catch (error) {
+                lastError = error;
+
+                console.error(
+                    `Gemini attempt ${attempt} failed:`,
+                    error?.message || error
+                );
+
+                // Wait before retrying
+                if (attempt < 3) {
+                    await new Promise(resolve =>
+                        setTimeout(resolve, attempt * 2000)
+                    );
+                }
+            }
+        }
+
+        if (!response) {
+            throw lastError;
+        }
 
         res.json({
-            reply: response.output_text
+            reply: response.text
         });
 
     } catch (error) {
+        console.error("Gemini Error:", error?.message || error);
 
-        const quotaExhausted = error?.code === 'credit_balance_exhausted'
-            || error?.type === 'insufficient_quota';
-
-        console.error('OpenAI Error:', error?.message || error);
-
-        res.status(quotaExhausted ? 429 : 500).json({
-            message: quotaExhausted
-                ? 'OpenAI API credits are exhausted. Add credits to your OpenAI account and try again.'
-                : 'AI request failed. Please try again later.'
+        res.status(500).json({
+            message: "Gemini is temporarily unavailable. Please try again in a moment."
         });
     }
 });

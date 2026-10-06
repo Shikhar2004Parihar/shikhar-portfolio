@@ -5,6 +5,7 @@ const path = require("node:path");
 const connectToDatabase = require("./database");
 
 dotenv.config({ path: path.join(__dirname, ".env") });
+console.log("Gemini key loaded:", !!process.env.GEMINI_API_KEY);
 
 const chatRoutes = require('./routes/chatRoutes');
 const contactRoutes = require("./routes/contactRoutes");
