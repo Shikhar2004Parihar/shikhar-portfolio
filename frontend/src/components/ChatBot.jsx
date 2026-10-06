@@ -3,7 +3,7 @@ import aiAgentImage from '../assets/ai-agent.jpg';
 import { readApiResponse } from '../utils/api';
 import './ChatBot.css';
 
-const API_URL = "http://localhost:5000";
+const API_URL = "";
 
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
