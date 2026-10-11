@@ -5,7 +5,7 @@ import ChatBot from './components/ChatBot.jsx';
 import About from './sections/about.jsx';
 import Skills from './sections/skills.jsx';
 import Education from './sections/education.jsx';
-import Portfolio from './sections/portfolio.jsx';
+import Projects from './sections/projects.jsx';
 import Experience from './sections/experience.jsx';
 import Contact from './sections/contact.jsx';
 
@@ -154,7 +154,7 @@ export default function App() {
           <About />
           <Skills />
           <Education />
-          <Portfolio />
+          <Projects />
           <Experience />
           <Contact />
 

@@ -2,7 +2,7 @@ const navigationItems = [
   { label: 'About', target: 'about' },
   { label: 'Skills', target: 'skills' },
   { label: 'Education', target: 'education' },
-  { label: 'Portfolio', target: 'portfolio' },
+  { label: 'Projects', target: 'projects' },
   { label: 'Experience', target: 'experience' },
   { label: 'Contact', target: 'contact' },
 ];
