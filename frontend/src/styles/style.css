@@ -525,7 +525,7 @@ a.value:hover {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: min(100%, 500px);
+    width: min(100%, 400px);
     aspect-ratio: 1;
     transform: translate(-50%, -50%);
 }
@@ -560,18 +560,20 @@ a.value:hover {
     top: 50%;
     left: 50%;
     display: grid;
-    width: 36px;
-    height: 36px;
+    width: 46px;
+    height: 46px;
     place-items: center;
     border: 1px solid rgba(255, 191, 0, 0.24);
     border-radius: 50%;
     background: var(--bg-color);
     box-shadow: 0 5px 18px rgba(0, 0, 0, 0.28);
     --orbit-radius: 50cqi;
+    transform-origin: 0 0;
     transform:
         rotate(var(--orbit-angle))
         translateX(var(--orbit-radius))
-        rotate(var(--orbit-counter-angle));
+        rotate(var(--orbit-counter-angle))
+        translate(-50%, -50%);
 }
 
 .about-orbit-skill img {
