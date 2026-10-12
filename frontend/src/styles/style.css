@@ -392,7 +392,7 @@ a.value:hover {
 
 .about {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     align-items: center;
     gap: 40px;
 }
@@ -468,9 +468,15 @@ a.value:hover {
    RESUME BUTTON
 ===================================================== */
 
+.about-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+
 .resume-btn {
     display: inline-block;
-    margin-top: 30px;
     padding: 11px 22px;
     border: 1px solid var(--redyellow-text);
     border-radius: 25px;
@@ -485,10 +491,20 @@ a.value:hover {
         transform 0.3s ease;
 }
 
+.projects-btn {
+    color: var(--text-color);
+    background: transparent;
+}
+
 .resume-btn:hover {
     color: #ffbf00;
     background: transparent;
     transform: translateY(-3px);
+}
+
+.projects-btn:hover {
+    color: var(--bg-color);
+    background: var(--underline-color);
 }
 
 
@@ -497,14 +513,103 @@ a.value:hover {
 ===================================================== */
 
 .about-image {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 440px;
+    isolation: isolate;
+}
+
+.about-orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(100%, 500px);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+}
+
+.about-orbit-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    border: 1px solid rgba(255, 191, 0, 0.24);
+    border-radius: 50%;
+    container-type: inline-size;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.about-orbit-ring-inner {
+    width: min(82%, 380px);
+    animation-name: orbit-spin;
+    animation-duration: 34s;
+}
+
+.about-orbit-ring-outer {
+    width: 100%;
+    animation-name: orbit-spin-reverse;
+    animation-duration: 42s;
+}
+
+.about-orbit-skill {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border: 1px solid rgba(255, 191, 0, 0.24);
+    border-radius: 50%;
+    background: var(--bg-color);
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.28);
+    --orbit-radius: 50cqi;
+    transform:
+        rotate(var(--orbit-angle))
+        translateX(var(--orbit-radius))
+        rotate(var(--orbit-counter-angle));
+}
+
+.about-orbit-skill img {
+    width: 23px;
+    height: 23px;
+    filter: grayscale(1) invert(0.7);
+}
+
+.about-orbit-ring-inner .about-orbit-skill img {
+    animation: orbit-counter-spin 34s linear infinite;
+}
+
+.about-orbit-ring-outer .about-orbit-skill img {
+    animation: orbit-spin 42s linear infinite;
+}
+
+.about-orbit-ring-outer .about-orbit-skill {
+    --orbit-radius: 50cqi;
+}
+
+body.light-mode .about-orbit-ring {
+    border-color: rgba(0, 0, 0, 0.52);
+}
+
+body.light-mode .about-orbit-skill {
+    border-color: rgba(0, 0, 0, 0.45);
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.16);
+}
+
+body.light-mode .about-orbit-skill img {
+    filter: grayscale(1) brightness(0);
 }
 
 .image-wrapper {
     position: relative;
-    width: min(350px, 80%);
+    z-index: 1;
+    width: min(280px, 76%);
+    aspect-ratio: 1;
     padding: 8px;
     border-radius: 50%;
 }
@@ -518,6 +623,31 @@ a.value:hover {
     border-top: 5px solid black;
     border-right: 5px solid black;
     border-bottom: 5px solid black;
+}
+
+@keyframes orbit-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes orbit-spin-reverse {
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes orbit-counter-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .about-orbit-ring,
+    .about-orbit-skill img {
+        animation: none;
+    }
 }
 
 /* =====================================================
@@ -1353,6 +1483,10 @@ footer {
         width: 300px;
     }
 
+    .image-wrapper {
+        width: 230px;
+    }
+
 }
 
 
@@ -1461,6 +1595,34 @@ footer {
         margin-top: 20px;
     }
 
+    .about-actions {
+        justify-content: center;
+    }
+
+    .about-image {
+        width: 100%;
+        min-height: 410px;
+    }
+
+    .about-orbit {
+        width: min(100%, 350px);
+    }
+
+    .about-orbit-ring-outer .about-orbit-skill {
+        --orbit-radius: 50cqi;
+    }
+
+    .about-orbit-ring-inner .about-orbit-skill {
+        --orbit-radius: 50cqi;
+    }
+
+    .about-orbit-ring-inner {
+        width: min(82%, 380px);
+    }
+
+    .image-wrapper {
+        width: 230px;
+    }
 
     /* Skills */
 
@@ -1631,6 +1793,11 @@ footer {
         text-align: center;
     }
 
+    .about-actions {
+        gap: 10px;
+        margin-top: 24px;
+    }
+
     .resume-btn {
         font-size: 0.7rem;
         padding: 10px 17px;
@@ -1640,7 +1807,31 @@ footer {
     /* Image */
 
     .image-wrapper {
-        width: 230px;
+        width: min(190px, 70%);
+    }
+
+    .about-image {
+        width: 100%;
+        min-height: 330px;
+        margin-top: 0;
+    }
+
+    .about-orbit {
+        width: min(100%, 350px);
+    }
+
+    .about-orbit-skill {
+        width: 40px;
+        height: 40px;
+    }
+
+    .about-orbit-ring-inner {
+        width: min(82%, 380px);
+    }
+
+    .about-orbit-skill img {
+        width: 19px;
+        height: 19px;
     }
 
 
