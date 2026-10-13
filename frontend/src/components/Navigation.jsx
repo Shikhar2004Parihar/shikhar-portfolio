@@ -5,6 +5,7 @@ const navigationItems = [
   { label: 'Projects', target: 'projects' },
   { label: 'Experience', target: 'experience' },
   { label: 'Contact', target: 'contact' },
+  { label: 'AskAi', target: 'askai' },
 ];
 
 export default function Navigation({ onNavigate }) {

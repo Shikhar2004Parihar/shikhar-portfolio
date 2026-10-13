@@ -30,7 +30,7 @@ function Sidebar({ lightMode, onThemeToggle, isOpen }) {
         </div>
         <div className="contact-item">
           <h3 className="label">Location</h3>
-          <p className="value">Satna, India</p>
+          <p className="value">Indore, India</p>
         </div>
       </div>
 
@@ -69,6 +69,7 @@ function Sidebar({ lightMode, onThemeToggle, isOpen }) {
 export default function App() {
   const [lightMode, setLightMode] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const [sectionToScroll, setSectionToScroll] = useState(null);
 
   useEffect(() => {
@@ -119,6 +120,12 @@ export default function App() {
   }, []);
 
   const handleNavigation = (event, target) => {
+    if (target === 'askai') {
+      event.preventDefault();
+      setIsChatOpen(true);
+      return;
+    }
+
     event.preventDefault();
     window.history.pushState(null, '', `#${target}`);
     setSectionToScroll(target);
@@ -165,7 +172,7 @@ export default function App() {
 
       </main>
 
-      <ChatBot />
+      <ChatBot isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} onOpen={() => setIsChatOpen(true)} />
     </div>
   );
 }

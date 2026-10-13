@@ -13,11 +13,24 @@ const suggestedQuestions = [
   'How can I contact you?'
 ];
 
-export default function ChatBot() {
-  const [isOpen, setIsOpen] = useState(false);
+export default function ChatBot({ isOpen: controlledIsOpen, onOpen, onClose }) {
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
   const [activeView, setActiveView] = useState('home');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const isOpen = controlledIsOpen ?? internalIsOpen;
+  const setIsOpen = (value) => {
+    if (value) {
+      onOpen?.();
+    } else {
+      onClose?.();
+    }
+
+    if (controlledIsOpen === undefined) {
+      setInternalIsOpen(value);
+    }
+  };
 
   const [messages, setMessages] = useState([
     {
