@@ -81,8 +81,9 @@ export default function Experience() {
               <span className="experience-type">Internship</span>
             </div>
             <p className="experience-description">
-              Currently completing a 45-day frontend development internship at Alphawizz
-              Technologies in Indore, from November to December 2026.
+              Contributing to real-world projects by building and improving web features with
+              JavaScript and React. Growing through hands-on debugging, problem-solving, team
+              collaboration, and industry-standard development practices.
             </p>
           </div>
 
