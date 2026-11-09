@@ -70,9 +70,31 @@ export default function Experience() {
   return (
     <>
       <section id="experience" className="section experience-section animate-on-scroll">
-        <SectionHeading eyebrow="CREATIVE EXPERIENCE">
+        <SectionHeading eyebrow="PROFESSIONAL EXPERIENCE">
           My <span>Experience</span>
         </SectionHeading>
+
+        <div className="experience-layout">
+          <div className="experience-copy">
+            <div className="experience-title-row">
+              <h2>Frontend Development Intern</h2>
+              <span className="experience-type">Internship</span>
+            </div>
+            <p className="experience-description">
+              Currently completing a 45-day frontend development internship at Alphawizz
+              Technologies in Indore, from November to December 2026.
+            </p>
+          </div>
+
+          <aside className="experience-stats" aria-label="Internship details">
+            <span className="experience-stats-label">INTERNSHIP DETAILS</span>
+            <div className="experience-stat">
+              <strong>45</strong>
+              <p>days</p>
+            </div>
+            <p className="experience-process">NOVEMBER - DECEMBER 2026 <span aria-hidden="true">/</span> INDORE</p>
+          </aside>
+        </div>
 
         <div className="experience-layout">
           <div className="experience-copy">

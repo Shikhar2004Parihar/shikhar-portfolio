@@ -911,6 +911,10 @@ body.light-mode .about-orbit-skill img {
     align-items: stretch;
 }
 
+.experience-layout + .experience-layout {
+    margin-top: 42px;
+}
+
 .experience-copy {
     padding-left: 26px;
     border-left: 2px solid var(--underline-color);
