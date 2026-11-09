@@ -743,6 +743,17 @@ body.light-mode .about-orbit-skill img {
         filter 0.3s ease;
 }
 
+.skill-icon-placeholder {
+    display: inline-flex;
+    width: 35px;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
 .skill h5 {
     margin-top: 8px;
     color: #999;

@@ -13,6 +13,19 @@ const suggestedQuestions = [
   'How can I contact you?'
 ];
 
+const prewrittenAnswers = {
+  'tell me about yourself':
+    'I’m Shikhar Parihar, a Full Stack Web Developer who enjoys building modern, responsive, and user-friendly web applications.',
+  'what are your skills?':
+    'I work with HTML, CSS, JavaScript, React.js, Node.js, Express.js, MongoDB, SQL, Git, and GitHub.',
+  'what projects have you worked on?':
+    'I built My To-Do List, a task-planning app for organizing tasks, setting priorities and due dates, and creating custom lists. You can try it at https://shikhar-todolist.vercel.app/.',
+  'what is your experience?':
+    'I have worked as a Frontend Development Intern, building and improving web features with JavaScript and React. I also work as a freelance graphic designer, with 300+ custom designs and 50+ edited videos.',
+  'how can i contact you?':
+    'You can email Shikhar at pariharshikhar101@gmail.com, call 6232553367, or use the contact form on this portfolio.'
+};
+
 export default function ChatBot({ isOpen: controlledIsOpen, onOpen, onClose }) {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const [activeView, setActiveView] = useState('home');
@@ -45,6 +58,9 @@ export default function ChatBot({ isOpen: controlledIsOpen, onOpen, onClose }) {
       return;
     }
 
+    const normalizedMessage = userMessage.toLowerCase().replace(/\s+/g, ' ');
+    const prewrittenAnswer = prewrittenAnswers[normalizedMessage];
+
     setMessages((previous) => [
       ...previous,
       {
@@ -55,6 +71,18 @@ export default function ChatBot({ isOpen: controlledIsOpen, onOpen, onClose }) {
 
     setMessage('');
     setActiveView('message');
+
+    if (prewrittenAnswer) {
+      setMessages((previous) => [
+        ...previous,
+        {
+          sender: 'bot',
+          text: prewrittenAnswer
+        }
+      ]);
+      return;
+    }
+
     setLoading(true);
 
     try {

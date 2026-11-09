@@ -8,6 +8,8 @@ const skillGroups = [
       ['CSS3', 'css'],
       ['JavaScript', 'javascript'],
       ['React.js', 'react'],
+      ['Bootstrap', 'bootstrap'],
+      ['AOS library', null],
     ],
   },
   {
@@ -46,7 +48,11 @@ export default function Skills() {
             <div className="skill-items">
               {group.skills.map(([name, icon]) => (
                 <div className="skill" key={name}>
-                  <img src={`https://simpleicons.org/icons/${icon}.svg`} alt="" />
+                  {icon ? (
+                    <img src={`https://simpleicons.org/icons/${icon}.svg`} alt="" />
+                  ) : (
+                    <span className="skill-icon-placeholder" aria-hidden="true">AOS</span>
+                  )}
                   <h5>{name}</h5>
                 </div>
               ))}

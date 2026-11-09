@@ -12,6 +12,7 @@ import scienceEvent from '../assets/mycanvadesigns/scienceEvent.jpeg';
 
 
 const designTools = ['Canva', 'Adobe Photoshop', 'Figma'];
+const internshipSkills = ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Bootstrap', 'AOS library'];
 
 const designSamples = [
   { title: 'Sports banner', src: sportsBanner },
@@ -85,6 +86,12 @@ export default function Experience() {
               JavaScript and React. Growing through hands-on debugging, problem-solving, team
               collaboration, and industry-standard development practices.
             </p>
+            <div className="experience-tools">
+              <span className="experience-tools-label">SKILLS I USE</span>
+              <ul aria-label="Frontend development internship skills">
+                {internshipSkills.map((skill) => <li key={skill}>{skill}</li>)}
+              </ul>
+            </div>
           </div>
 
           <aside className="experience-stats" aria-label="Internship details">
