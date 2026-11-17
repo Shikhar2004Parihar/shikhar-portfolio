@@ -6,11 +6,11 @@ export default function Education() {
       <SectionHeading eyebrow="MY BACKGROUND">
         My <span>Education</span>
       </SectionHeading>
-      <div className="placeholder-card">
+      <div data-aos="fade-left" data-aos-delay="100" className="placeholder-card">
         <h2>Master of Computer Applications</h2>
         <p>MCA - SAGE UNIVERSITY INDORE</p>
       </div>
-      <div className="placeholder-card">
+      <div data-aos="fade-right" data-aos-delay="200" className="placeholder-card">
         <h2>Bachelor of Science</h2>
         <p>BSc - VITS COLLEGE SATNA</p>
       </div>

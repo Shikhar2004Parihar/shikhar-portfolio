@@ -31,7 +31,7 @@ export default function About() {
     <section id="about" className="about section">
       <div className="about-content">
         <span className="section-tag developer-text">I AM A DEVELOPER</span>
-        <h1>About <span>Me</span></h1>
+        <h1 data-aos="fade-up">About <span data-aos="fade-up">Me</span></h1>
         <div className="section-line" />
         <p>
           I am a passionate Full Stack Web Developer with a strong interest in building modern,
@@ -42,15 +42,15 @@ export default function About() {
           Express.js, MongoDB, SQL, Git and GitHub.
         </p>
         <div className="about-actions">
-          <a href="shikhar-resume.pdf" className="resume-btn" download>
+          <a data-aos="fade-right" data-aos-delay="100" href="shikhar-resume.pdf" className="resume-btn" download>
             DOWNLOAD RESUME
           </a>
-          <a href="#projects" className="resume-btn projects-btn">
+          <a data-aos="fade-left" data-aos-delay="100" href="#projects" className="resume-btn projects-btn">
             VISIT PROJECTS
           </a>
         </div>
       </div>
-      <div className="about-image">
+      <div data-aos="zoom-in" data-aos-delay="100" className="about-image">
         <div className="about-orbit" aria-hidden="true">
           {orbitRings.map(({ className, skills, angleOffset }) => (
             <div className={`about-orbit-ring about-orbit-ring-${className}`} key={className}>
